@@ -1,0 +1,9 @@
+framework:
+  http_client:
+    scoped_clients:
+      pterodactyl.client:
+        base_uri: "%env(PTERODACTYL_BASE_URL)%"
+        headers:
+          Accept: 'application/vnd.pterodactyl.v1+json'
+          Authorization: "Bearer %env(PTERODACTYL_API_KEY)%"
+          Content-Type: 'application/json'

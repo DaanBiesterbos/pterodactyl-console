@@ -1,0 +1,76 @@
+### Fetch server objects
+GET {{baseUrl}}/api/client
+Accept: application/vnd.pterodactyl.v1+json
+Authorization: Bearer {{apiKey}}
+Content-Type: application/json
+
+> {%
+client.test("Response data exists", function() {
+  client.assert(response.body.hasOwnProperty("data"), "Cannot find 'data' option in response");
+});
+client.test("Server uuid exists", function() {
+  client.assert(response.body.data[0].attributes.hasOwnProperty("uuid"), "Cannot find 'uuid' option in first server");
+});
+
+client.global.set('serverId', response.body.data[0].attributes.uuid);
+%}
+###
+
+### Fetch server objects
+GET {{baseUrl}}/api/client/servers/{{serverId}}
+Accept: application/vnd.pterodactyl.v1+json
+Authorization: Bearer {{apiKey}}
+Content-Type: application/json
+
+> {%
+client.test("Response is valid", function() {
+  client.assert(response.body.hasOwnProperty("object"), "Cannot find 'object' option in response");
+  client.assert(response.body.hasOwnProperty("attributes"), "Cannot find 'attributes' option in response");
+});
+%}
+###
+
+### Fetch resource usage
+GET {{baseUrl}}/api/client/servers/{{serverId}}/resources
+Accept: application/vnd.pterodactyl.v1+json
+Authorization: Bearer {{apiKey}}
+Content-Type: application/json
+
+> {%
+client.test("Response is valid", function() {
+  client.assert(response.body.hasOwnProperty("object"), "Cannot find 'object' option in response");
+  client.assert(response.body.hasOwnProperty("attributes"), "Cannot find 'attributes' option in response");
+});
+%}
+###
+
+### Send command
+POST {{baseUrl}}/api/client/servers/{{serverId}}/command
+Accept: application/vnd.pterodactyl.v1+json
+Authorization: Bearer {{apiKey}}
+Content-Type: application/json
+
+{
+  "command": "Hi this is a command..."
+}
+
+> {%
+client.test("Response is valid", function() {
+  client.assert(response.body.hasOwnProperty("object"), "Cannot find 'object' option in response");
+  client.assert(response.body.hasOwnProperty("attributes"), "Cannot find 'attributes' option in response");
+});
+%}
+###
+
+### Reinstall
+POST {{baseUrl}}/api/client/servers/{{serverId}}/settings/reinstall
+Accept: application/vnd.pterodactyl.v1+json
+Authorization: Bearer {{apiKey}}
+Content-Type: application/json
+
+> {%
+client.test("Request executed successfully", function() {
+  client.assert(response.status >= 200 && response.status < 300, "Is not a successful 2xx response!");
+});
+%}
+###

@@ -1,0 +1,7 @@
+.idea
+.env
+vendor
+var/cache
+var/log
+*.local
+*/http-client.private.env.json
