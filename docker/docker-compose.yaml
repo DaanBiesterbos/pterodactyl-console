@@ -8,6 +8,8 @@ services:
     environment:
       - APP_ENV=${APP_ENV}
       - APP_SECRET=${APP_SECRET}
+      - PTERODACTYL_BASE_URL=${PTERODACTYL_BASE_URL}
+      - PTERODACTYL_API_KEY=${PTERODACTYL_API_KEY}
     volumes:
       - ${APP_FOLDER}:/var/www
 
