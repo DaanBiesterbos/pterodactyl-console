@@ -4,7 +4,7 @@
 
 Clone this repository. If you want to run this application locally you will need to install **PHP 8** or greater. In addition, you will need to install the **Composer** package manager.
 
-Run composer update to install the application dependencies.
+Run composer install to download the application dependencies.
 
 ```shell
 composer install
