@@ -25,20 +25,6 @@ use Throwable;
 class ServerKillCommand extends AbstractServerPowerCommand
 {
     /**
-     * Configure command
-     */
-    protected function configure(): void
-    {
-        $this->addArgument('serverId', InputArgument::OPTIONAL, 'A server UUID');
-        $this->addOption(
-            'ignore-install',
-            'ig',
-            InputOption::VALUE_NONE,
-            'Do not wait for pending installations'
-        );
-    }
-
-    /**
      * @param InputInterface $input
      * @param OutputInterface $output
      * @return int
