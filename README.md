@@ -27,11 +27,6 @@ PTERODACTYL_API_KEY=your-api-key
 ```
 
 
-## Docker
-
-This repository provides a working docker setup to get started quickly.
-To use docker I recommend to complete your configuration first.
-And when you are done, check out the bottom of this document for the steps needed to run the application in docker.
 
 ## Configuration
 
