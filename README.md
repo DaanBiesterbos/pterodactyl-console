@@ -115,7 +115,7 @@ Simply run `bin/console` and everything should work as expected. Enjoy! :)
 
 
 
-#### Optional: HTTP Requests 
+## HTTP Requests (Optional)
 *This feature is for Jetbrains IDE's only (Phpstorm, IntelliejIDEA)*
 
 To quickly communicate with the pterodactyl API it can be quite useful to send HTTP requests using the Webservices tool in Phpstorm.
@@ -123,7 +123,6 @@ Copy http/http-client.private.env.json.dist to http/http-client.private.env.json
 
 
 ## Usage 
-
 
 ### Available Commands
 
