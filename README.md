@@ -2,16 +2,20 @@
 
 ## Installation
 
+### Local Installation
 Clone this repository. If you want to run this application locally you will need to install **PHP 8** or greater. In addition, you will need to install the **Composer** package manager.
-
 Run composer install to download the application dependencies.
+
 
 ```shell
 composer install
 ```
 
+### Docker
 
-
+This repository provides a working docker setup to get started quickly.
+To use docker I recommend to complete your configuration first.
+And when you are done, check out the bottom of this document for the steps needed to run the application in docker.
 
 ## Configuration
 
@@ -106,3 +110,67 @@ Start Server
  [OK] Start signal was sent successfully!                                                                               
                                                                                                                         
 ```
+
+
+
+## Using Docker
+
+### Requirements
+
+You will need to install docker and docker compose. Check out the docker documentation for instructions on how to instal docker in your OS.
+
+- Docker Compose 3.7 or greater
+- Docker
+
+### Create .env file
+
+Go to the ./docker directory and copy .env.dist. Change the settings if needed.
+
+### Build the containers
+
+From within the docker container, run the following commands.
+
+```shell
+docker-compose build
+```
+
+```shell
+docker-compose up
+```
+
+*Open localhost:9006 in your browser to verify that the application is running. In case you changed your port in .env, obviously, use this port instead*
+
+Note that at this time, there are no webpages. Perhaps in the future. But why throw something away this fancy, right? In any case... We currently only care about the commandline.
+
+### Using the command line interface
+
+Open a shell into your docker container.  To do this, you will need the name of te container, or the container ID.
+I have named the containers, so this should be as easy as this:
+
+```shell
+docker exec -it pterodactyl-console-php /bin/sh
+```
+
+If you for whatever reason do not know the ID or the name of a container (Dude? I just said I named them. How did you mess that up?! xD) you can easily figure it out.
+Run this command to display your containers.
+```shell
+docker ps
+```
+
+You should see something like this:
+```shell
+CONTAINER ID   IMAGE          COMMAND                  CREATED         STATUS              PORTS                                   NAMES
+daab008c460b   docker_nginx   "/docker-entrypoint.…"   2 minutes ago   Up About a minute   0.0.0.0:9006->80/tcp, :::9006->80/tcp   pterodactyl-console-nginx
+3a9b7526c1dd   docker_php     "docker-php-entrypoi…"   2 minutes ago   Up About a minute   9000/tcp                                pterodactyl-console-php
+```
+
+You can either use the container ID or the name of the container to get a shell.
+Assuming the example above, this should work as well.
+
+```shell
+docker exec -it 3a9b7526c1dd /bin/sh
+```
+
+#### Run the console application
+
+Simply run `bin/console` and everything should work as expected. Enjoy! :)
